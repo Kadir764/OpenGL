@@ -103,6 +103,61 @@ To upload all images:
  
  glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE); --> GL_TEXTURE_WRAP_R set the wrapping behavior for texture coordinates in the R (depth) direction. GL_CLAMP_TO_EDGE means the texture coordinates are clamped between 0 and 1.
 
+8. Math Functions:
+There are several math functions and to visualize them I firslt plot the function as known in math and what can be done by using them. For the values that function takes 1 the output should be red for 0 and negative values output should be black. I will give two examples but there are much more in the opengl.docx file.
+
+8.1 Step Function:
+
+![image](https://github.com/Kadir764/OpenGL/assets/132132455/e883fafd-9c87-4bac-9448-a06be68beadb)
+As can be seen from the image function value and color change sharply.
+
+float y =  step(0 , x); --> This function returns 0.0 if x is less than 0, and 1.0 otherwise. It's essentially creating a step function that "steps" from 0 to 1 when x is non-negative.
+
+float yNormalized = (y - 0.0) / (1.0 - 0.0); --> This variable is created to normalize the value of y from the range [0, 1] to [0, 1]. Since y is already in the range [0, 1], this step is not strictly necessary in this specific case.
+
+vec3 color = vec3(yNormalized, 0.0, 0.0); --> This creates a 3D vector where the red component (r) is set to yNormalized, and the green and blue components are set to 0.0. It results in a shade of red determined by the normalized value of y.
+
+FragColor = vec4(color, 1.0); --> This sets the output color of the fragment shader. It's a 4D vector where the RGB components are taken from the color vector, and the alpha component is set to 1.0, making it fully opaque.
+
+8.2 Smoothstep Function:
+
+![image](https://github.com/Kadir764/OpenGL/assets/132132455/b142f1f0-3db2-41f7-b936-a3e79efe65e5)
+As can be seen from the image function value and color change paralelly.
+
+float y =  smoothstep(-3 ,3, x); -->  This function returns a smooth interpolation between 0 and 1 based on the input x. It's commonly used to create smooth transitions. In this case, it's smoothing the step function, so it will smoothly transition from 0 to 1 as x goes from less than -3 to greater than 3.
+
+float yNormalized = (y - 0.0) / (1.0 - 0.0); --> This variable is created to normalize the value of y from the range [0, 1] to [0, 1]. Since y is already in the range [0, 1], this step is not strictly necessary in this specific case.
+
+vec3 color = vec3(yNormalized, 0.0, 0.0); --> This creates a 3D vector where the red component (r) is set to yNormalized, and the green and blue components are set to 0.0. It results in a shade of red determined by the normalized value of y.
+
+FragColor = vec4(color, 1.0); --> This sets the output color of the fragment shader. It's a 4D vector where the RGB components are taken from the color vector, and the alpha component is set to 1.0, making it fully opaque.
+
+9. Distance function
+Distance function is calculates distance between two point. To visualize that I draw two objects and connect them with a line. When distance is changing color is also changing. This is a way to show how distance works.
+
+![image](https://github.com/Kadir764/OpenGL/assets/132132455/97cfd9aa-bc38-4103-adc1-2e13282a357e)
+
+As can be seen color is changing according to distance.
+
+Shader:
+   float dist = distance(triangle1Position, triangle2Position); --> This calculates the Euclidean distance between triangle1Position and triangle2Position.
+   
+   FragColor = vec4(1.0 - dist/2.0, dist/2.0, 0.5, 1.0); --> This sets the output color of the fragment shader. It's a 4D vector where the red (r) component is set to 1.0 - dist/2.0, green (g) is set to dist/2.0, blue (b) is set to 0.5, and alpha (a) is set to 1.0.
+
+Cpp:
+   glm::vec3 triangle1Position = glm::vec3(xloc1, yloc1, zloc1); --> This creates a 3D vector representing the position of triangle 1.
+      
+   glm::vec3 triangle2Position = glm::vec3(xloc2, yloc2, zloc2); --> This creates a 3D vector representing the position of triangle 2.
+   
+   GLint triangle1PositionLocation = glGetUniformLocation(shaderUtil.GetProgramId(), "triangle1Position"); --> This gets the location of the triangle1Position uniform variable in the shader.
+   
+   GLint triangle2PositionLocation = glGetUniformLocation(shaderUtil.GetProgramId(), "triangle2Position"); --> This gets the location of the triangle2Position uniform variable in the shader.
+   
+   glUniform3fv(triangle1PositionLocation, 1, glm::value_ptr(triangle1Position)); -->  This sets the value of the triangle1Position uniform variable in the shader.
+   
+   glUniform3fv(triangle2PositionLocation, 1, glm::value_ptr(triangle2Position)); -->  This sets the value of the triangle2Position uniform variable in the shader.
+   
+
 
 
 
