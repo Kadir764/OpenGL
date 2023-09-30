@@ -161,7 +161,15 @@ Cpp:
    
 
 
+## Contact
 
+If you have any questions, suggestions, or just want to connect, feel free to reach out:
+
+- **Email:** abilge20@ku.edu.tr
+- **LinkedIn:** [Abdulkadir Bilge](https://www.linkedin.com/in/abdulkadirbilge/)
+- **GitHub:** [Your GitHub Profile](https://github.com/Kadir764)
+
+Feel free to open issues or pull requests in this repository. Contributions are welcome!
 
 
 
