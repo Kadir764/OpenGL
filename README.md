@@ -71,9 +71,9 @@ SOIL_free_image_data(image); --> Frees the memory allocated by SOIL for storing 
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); --> GL_TEXTURE_WRAP_S set the wrapping behavior for texture coordinates in the S (horizontal) direction. GL_REPEAT means the texture will repeat.
 
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT --> GL_TEXTURE_WRAP_T set the wrapping behavior for texture coordinates in the T (vertical) direction. GL_REPEAT means the texture will repeat.
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); --> GL_TEXTURE_MAG_FILTER set the filtering parameters for magnifying the texture, respectively. GL_LINEAR uses linear interpolation. 
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); --> GL_TEXTURE_MIN_FILTER set the filtering parameters for minifying the texture, respectively. GL_LINEAR uses linear interpolation. 
 
-glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); --> GL_TEXTURE_MIN_FILTER set the filtering parameters for minifying the texture, respectively. GL_LINEAR uses linear interpolation.
+glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); --> GL_TEXTURE_MAG_FILTER set the filtering parameters for magnifying the texture, respectively. GL_LINEAR uses linear interpolation.
 
 glActiveTexture(GL_TEXTURE0); --> Activates texture unit GL_TEXTURE0. Subsequent texture binding operations will affect this texture unit.
 
@@ -82,6 +82,28 @@ glBindTexture(GL_TEXTURE_2D, texture); --> Binds the texture (texture) to the cu
 glUniform1i(textureLocation, 0); --> Sets the value of the u_texture uniform variable in the shader to 0 (the index of the texture unit). This connects the texture unit to the shader variable
 
 7. SamplerCube type:
+![image](https://github.com/Kadir764/OpenGL/assets/132132455/281f4917-1645-4700-b3cb-df53e92c5942)
+
+The type SamplerCube is quite similar to Sampler2D. This time we upload 6 images for 6 faces of the cube. Code part for Sampler2D can be found below as codes are also similar to previous part there will be only different part of codes:
+To upload all images:
+![image](https://github.com/Kadir764/OpenGL/assets/132132455/1ad11be4-deef-40a7-952c-cf12671da607)
+ unsigned int cubemapTexture; --> This variable stores the ID of the generated cube map texture.
+ 
+ glGenTextures(1, &cubemapTexture); --> Generates texture names and stores them in the cubemapTexture variable.
+ 
+ glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture); --> Binds the cube map texture object (cubemapTexture) to the target GL_TEXTURE_CUBE_MAP. Subsequent texture-related operations will affect this cube map.
+ 
+ glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR); --> GL_TEXTURE_MIN_FILTER set the filtering parameters for minifying the texture. GL_LINEAR uses linear interpolation.
+ 
+ glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR); --> GL_TEXTURE_MAG_FILTER set the filtering parameters for magnifying the texture. GL_LINEAR uses linear interpolation.
+ 
+ glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); --> GL_TEXTURE_WRAP_S set the wrapping behavior for texture coordinates in the S (horizontal) direction. GL_CLAMP_TO_EDGE means the texture coordinates are clamped between 0 and 1.
+ 
+ glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE); --> GL_TEXTURE_WRAP_T set the wrapping behavior for texture coordinates in the T (vertical) direction. GL_CLAMP_TO_EDGE means the texture coordinates are clamped between 0 and 1.
+ 
+ glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE); --> GL_TEXTURE_WRAP_R set the wrapping behavior for texture coordinates in the R (depth) direction. GL_CLAMP_TO_EDGE means the texture coordinates are clamped between 0 and 1.
+
+
 
 
 
