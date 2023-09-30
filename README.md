@@ -19,4 +19,5 @@ This project demonstrates a simple OpenGL program for rendering a textured cube.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Kadir764/OpenGL_Internsship.git
+   git clone --branch master https://github.com/Kadir764/OpenGL.git
+
