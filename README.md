@@ -106,6 +106,8 @@ To upload all images:
 8. Math Functions:
 There are several math functions and to visualize them I firslt plot the function as known in math and what can be done by using them. For the values that function takes 1 the output should be red for 0 and negative values output should be black. I will give two examples but there are much more in the opengl.docx file.
 
+IMPORTANT NOTE: All math functions and distance functions are inside the Sine file.
+
 8.1 Step Function:
 
 ![image](https://github.com/Kadir764/OpenGL/assets/132132455/e883fafd-9c87-4bac-9448-a06be68beadb)
